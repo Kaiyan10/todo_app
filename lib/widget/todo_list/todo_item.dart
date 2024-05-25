@@ -1,25 +1,34 @@
 import 'package:todo_app/model/todo.dart';
 import 'package:flutter/material.dart';
 
-class TodoItem extends StatelessWidget {
+class TodoItem extends StatefulWidget {
   const TodoItem(this.todo, {super.key});
 
   final Todo todo;
 
   @override
+  State<TodoItem> createState() => _TodoItemState();
+}
+
+class _TodoItemState extends State<TodoItem> {
+  @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: Column(
-          children: [
-            Text(todo.title),
-            const SizedBox(
-              height: 4,
-            ),
-          ],
+    return Column(
+      children: [
+        CheckboxListTile(
+          value: widget.todo.isDone,
+          title: Text(widget.todo.title),
+          onChanged: (bool? value) {
+            setState(() {
+              widget.todo.isDone = value!;
+            });
+          },
+          subtitle: Text(widget.todo.description),
         ),
-      ),
+        const Divider(
+          height: 0,
+        )
+      ],
     );
   }
 }
