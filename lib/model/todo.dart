@@ -1,19 +1,21 @@
+import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
+final formatter = DateFormat.yMd();
+
+const uuid = Uuid();
+
 class Todo {
-  const Todo({
-    required this.todoId,
+  Todo({
     required this.title,
     required this.description,
     required this.isDone,
     required this.dueDateTime,
-    required this.createdAt,
-    required this.updatedAt,
-  });
+  }) : id = uuid.v4();
 
-  final String todoId;
+  final String id;
   final String title;
   final String description;
   final bool isDone;
   final DateTime dueDateTime;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
 }
