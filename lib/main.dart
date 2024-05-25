@@ -44,7 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: todoList.length,
         itemBuilder: (context, index) {
           return Card(
-            child: ListTile(
+            child: CheckboxListTile(
+              value:
               title: Text(todoList[index]),
             ),
           );
@@ -64,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           }
         },
-        tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
