@@ -78,17 +78,15 @@ class _TodosState extends State<Todos> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todoアプリ"),
-        actions: [
-          IconButton(
-            onPressed: _openAddTodoOverlay,
-            icon: const Icon(Icons.add),
-          ),
-        ],
       ),
       body: Column(
         children: [
           Expanded(child: mainContent),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openAddTodoOverlay,
+        child: const Icon(Icons.add),
       ),
     );
   }

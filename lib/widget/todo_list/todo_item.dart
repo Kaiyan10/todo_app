@@ -1,5 +1,7 @@
 import 'package:todo_app/model/todo.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class TodoItem extends StatefulWidget {
   const TodoItem(this.todo, {super.key});
@@ -13,6 +15,9 @@ class TodoItem extends StatefulWidget {
 class _TodoItemState extends State<TodoItem> {
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('ja_JP');
+    var formatter = DateFormat('yyyy/MM/dd(E) HH:mm', "ja_JP");
+
     return Column(
       children: [
         CheckboxListTile(
@@ -23,7 +28,34 @@ class _TodoItemState extends State<TodoItem> {
               widget.todo.isDone = value!;
             });
           },
-          subtitle: Text(widget.todo.description),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.calendar_month,
+                    size: 15,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    formatter.format(widget.todo.dueDateTime),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                widget.todo.description.toString(),
+                style: const TextStyle(
+                  fontSize: 10,
+                ),
+              )
+            ],
+          ),
         ),
         const Divider(
           height: 0,
