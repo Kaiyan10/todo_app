@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/model/todo.dart';
+import 'package:todo_app/screen/setting_screen.dart';
 import 'package:todo_app/widget/todo_list/todo_list.dart';
 import 'package:todo_app/widget/new_todo.dart';
 
@@ -13,18 +14,19 @@ class Todos extends StatefulWidget {
 class _TodosState extends State<Todos> {
   final List<Todo> _registeredTodos = [
     Todo(
-      title: "歯医者の予約をする",
-      description: "電話番号は、xxx-xxxx-xxxx",
-      isDone: false,
-      dueDateTime: DateTime(2024, 8, 31),
-    ),
+        title: "歯医者の予約をする",
+        description: "電話番号は、xxx-xxxx-xxxx",
+        isDone: false,
+        dueDateTime: DateTime(2024, 8, 31),
+        priority: Priority.high),
     Todo(
-      title: "トイレ掃除する",
-      description: "",
-      isDone: false,
-      dueDateTime: DateTime(2024, 8, 31),
-    )
+        title: "トイレ掃除する",
+        description: "",
+        isDone: false,
+        dueDateTime: DateTime(2024, 8, 31),
+        priority: Priority.high)
   ];
+  final List<Todo> _doneTodos = [];
 
   void _openAddTodoOverlay() {
     showModalBottomSheet(
@@ -78,6 +80,14 @@ class _TodosState extends State<Todos> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Todoアプリ"),
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingScreen()));
+              },
+              icon: const Icon(Icons.settings))
+        ],
       ),
       body: Column(
         children: [

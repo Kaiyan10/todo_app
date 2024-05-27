@@ -4,8 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class TodoItem extends StatefulWidget {
-  const TodoItem(this.todo, {super.key});
+  const TodoItem(this.todo, this.onRemoveTodo, {super.key});
 
+  final void Function(Todo todo) onRemoveTodo;
   final Todo todo;
 
   @override
@@ -22,10 +23,13 @@ class _TodoItemState extends State<TodoItem> {
       children: [
         CheckboxListTile(
           value: widget.todo.isDone,
-          title: Text(widget.todo.title),
+          title: Text(
+            widget.todo.title,
+          ),
           onChanged: (bool? value) {
             setState(() {
               widget.todo.isDone = value!;
+              widget.onRemoveTodo(widget.todo);
             });
           },
           subtitle: Column(

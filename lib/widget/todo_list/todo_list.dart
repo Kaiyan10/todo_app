@@ -24,7 +24,7 @@ class TodoList extends StatelessWidget {
         onDismissed: (direction) {
           onRemoveTodo(todos[index]);
         },
-        child: TodoItem(todos[index]),
+        child: TodoItem(todos[index], onRemoveTodo),
       ),
     );
   }
