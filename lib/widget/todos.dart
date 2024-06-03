@@ -24,7 +24,7 @@ class _TodosState extends State<Todos> {
         description: "",
         isDone: false,
         dueDateTime: DateTime(2024, 8, 31),
-        priority: Priority.high)
+        priority: Priority.middle)
   ];
   final List<Todo> _doneTodos = [];
 

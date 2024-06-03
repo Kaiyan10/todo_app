@@ -4,7 +4,16 @@ import 'package:intl/intl.dart';
 
 final formatter = DateFormat.yMd();
 
-enum Priority { urgent, high, middle, low }
+enum Priority {
+  urgent('緊急'),
+  high("高"),
+  middle("中"),
+  low("低");
+
+  const Priority(this.displayName);
+
+  final String displayName;
+}
 
 const uuid = Uuid();
 
